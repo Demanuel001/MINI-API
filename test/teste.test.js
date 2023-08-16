@@ -6,9 +6,26 @@ describe('Jest run test', () => {
         expect(soma).toBe(4);
     });
 
-    it("must get the name from a simple endpoint", async () => {
+    it("get name from a simple endpoint", async () => {
         const response = await axios.get('http://localhost:4000/nome');
         expect(response.status).toBe(200);
         expect(response.data).toBe("Danilo Emanuel");
-      });
+    });
+
+    it("get name from GraphQL", async () => {
+        const query = {
+          query: `
+            query {
+              meuNome
+            }
+          `
+        };
+    
+        const response = await axios.post('http://localhost:4000/graphql', query, {
+          headers: { 'Content-Type': 'application/json' }
+        });    
+        console.log(response.data);
+        expect(response.status).toBe(200);
+        expect(nomeDoGraphQL).toBe("Danilo Emanuel");
+    });
 });
