@@ -24,7 +24,7 @@ describe('Jest run test', () => {
         const response = await axios.post('http://localhost:4000/graphql', query, {
           headers: { 'Content-Type': 'application/json' }
         });    
-        console.log(response.data);
+        const nomeDoGraphQL = response.data.data.meuNome;
         expect(response.status).toBe(200);
         expect(nomeDoGraphQL).toBe("Danilo Emanuel");
     });

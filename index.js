@@ -14,7 +14,6 @@ const root = {
   },
 };
 
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +33,6 @@ app.post("/graphql", async (req, res) =>{
   res.set('Content-Type', 'application/json');
   res.status(200).send(result);
 })
-
 
 app.listen(4000, ()=>{
     console.log('Servidor ativo');
